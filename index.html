@@ -1,75 +1,78 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>دكتور فيتنس EMS السويس</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;900&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Cairo', sans-serif;
       margin: 0;
-      background: linear-gradient(to bottom right, #1e1e2f, #3a3a65);
+      background: linear-gradient(to bottom right, #141e30, #243b55);
       color: white;
       overflow-x: hidden;
     }
     header {
+      background-color: #111;
+      padding: 10px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #222;
-      padding: 10px 20px;
     }
     nav a {
       color: white;
-      margin: 0 10px;
+      margin: 0 15px;
       text-decoration: none;
       font-weight: bold;
-      transition: 0.3s;
     }
     nav a:hover {
       color: #ffd700;
     }
     .admin-icon {
-      cursor: pointer;
       font-size: 24px;
+      cursor: pointer;
     }
     .main-content {
       text-align: center;
       padding: 40px 10px;
     }
     .main-content h1 {
-      font-size: 32px;
+      font-size: 30px;
       margin-bottom: 20px;
       text-shadow: 2px 2px 4px #000;
-      animation: fadeIn 1s ease-in-out;
     }
-    .main-content img {
+    .slide {
+      margin-bottom: 20px;
+    }
+    .slide h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+    .slide img {
       width: 80%;
       max-width: 600px;
-      margin: 10px auto;
-      display: block;
       border-radius: 10px;
-      animation: zoomIn 1s ease;
+      box-shadow: 0 0 10px #000;
     }
-    .hidden { display: none; }
+    .hidden {
+      display: none;
+    }
     .section {
       padding: 20px;
       background: rgba(0,0,0,0.3);
       margin: 20px;
       border-radius: 10px;
-      animation: slideUp 1s ease;
     }
-    textarea {
+    textarea, input[type="text"], input[type="password"] {
       width: 90%;
-      height: 100px;
-      font-size: 16px;
-      margin-bottom: 10px;
-      border-radius: 8px;
       padding: 10px;
+      margin: 5px 0;
+      font-size: 16px;
+      border-radius: 5px;
     }
-    input[type="file"], input[type="text"] {
-      margin-bottom: 10px;
+    input[type="file"] {
+      margin: 10px 0;
     }
     button {
       background: #ffd700;
@@ -80,20 +83,16 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      transition: 0.3s;
     }
     button:hover {
       background: #ffb700;
     }
     footer {
+      background: #111;
+      color: #ccc;
       text-align: center;
       padding: 10px;
-      background: #111;
-      margin-top: 30px;
     }
-    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
-    @keyframes zoomIn { from {transform: scale(0.8);} to {transform: scale(1);} }
-    @keyframes slideUp { from {transform: translateY(50px);} to {transform: translateY(0);} }
   </style>
 </head>
 <body>
@@ -128,7 +127,6 @@
   <button onclick="sendMessage()">إرسال</button>
 </div>
 
-<!-- لوحة تحكم الأدمن -->
 <div id="adminPanel" class="section hidden">
   <h2>لوحة تحكم الأدمن</h2>
   <button onclick="logout()">تسجيل الخروج</button>
@@ -144,7 +142,6 @@
   <button onclick="uploadImage()">رفع</button>
 </div>
 
-<!-- نافذة الدخول -->
 <div id="loginForm" class="section hidden">
   <h2>دخول الأدمن</h2>
   <input type="text" id="username" placeholder="اسم المستخدم"><br>
@@ -154,7 +151,6 @@
 
 <footer>جميع الحقوق محفوظة © دكتور فيتنس EMS السويس</footer>
 
-<!-- Firebase Scripts -->
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-storage-compat.js"></script>
@@ -206,23 +202,26 @@
       about: aboutInput.value,
       contact: contactInput.value
     });
-    alert("تم التحديث");
+    alert("تم حفظ النصوص");
     loadContent();
   }
 
   async function uploadImage() {
     const file = document.getElementById("imageUpload").files[0];
     const text = document.getElementById("imageText").value;
-    const ref = storage.ref().child("slides/" + file.name);
+    if (!file || !text) return alert("يرجى اختيار صورة وكتابة نص");
+
+    const ref = storage.ref("slides/" + file.name);
     await ref.put(file);
     const url = await ref.getDownloadURL();
     await db.collection("slides").add({ url, text });
+    alert("تم الرفع");
     loadSlides();
   }
 
   async function sendMessage() {
-    const msg = document.getElementById("msgText").value;
-    if (!msg.trim()) return alert("أدخل رسالة");
+    const msg = document.getElementById("msgText").value.trim();
+    if (!msg) return alert("اكتب الرسالة أولاً");
     await db.collection("messages").add({ text: msg, time: new Date() });
     alert("تم الإرسال");
     msgText.value = "";
@@ -243,9 +242,10 @@
     const snap = await db.collection("slides").get();
     snap.forEach(doc => {
       const d = doc.data();
-      const div = document.createElement("div");
-      div.innerHTML = `<h3>${d.text}</h3><img src="${d.url}" alt="صورة">`;
-      slideContainer.appendChild(div);
+      const slide = document.createElement("div");
+      slide.className = "slide";
+      slide.innerHTML = `<h3>${d.text}</h3><img src="${d.url}" alt="صورة">`;
+      slideContainer.appendChild(slide);
     });
   }
 
@@ -254,5 +254,6 @@
     loadSlides();
   };
 </script>
+
 </body>
 </html>
