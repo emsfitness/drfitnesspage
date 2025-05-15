@@ -16,6 +16,19 @@
       overflow-x: hidden;
     }
 
+    .copyright {
+      text-align: center;
+      padding: 10px;
+      background: #000000;
+      color: #cd7f32;
+      font-size: 14px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+    }
+
     .marquee {
       width: 100%;
       background: #8b4513;
@@ -24,7 +37,7 @@
       font-weight: bold;
       font-size: 20px;
       position: fixed;
-      top: 0;
+      top: 40px; /* تعديل الموقع لأسفل بسبب حقوق النشر */
       z-index: 1000;
       animation: slide-left 20s linear infinite;
     }
@@ -35,7 +48,7 @@
     }
 
     .header {
-      margin-top: 100px;
+      margin-top: 140px; /* تعديل الهامش العلوي */
       padding: 30px;
       background: #000;
       color: #cd7f32;
@@ -107,7 +120,7 @@
     .admin-icon {
       position: fixed;
       left: 10px;
-      top: 10px;
+      top: 60px; /* تعديل الموقع لأسفل بسبب حقوق النشر */
       cursor: pointer;
       font-size: 24px;
       z-index: 1001;
@@ -125,7 +138,7 @@
     .top-icons {
       position: fixed;
       left: 10px;
-      top: 60px; /* أسفل أيقونة الأدمن مباشرة */
+      top: 110px; /* أسفل أيقونة الأدمن مباشرة */
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -262,7 +275,7 @@
     .side-panel {
       position: fixed;
       left: 60px;
-      top: 110px;
+      top: 160px; /* تعديل الموقع لأسفل */
       width: 300px;
       background: #2f2f2f;
       border-radius: 10px;
@@ -362,6 +375,9 @@
   </style>
 </head>
 <body>
+  <!-- حقوق النشر في الأعلى -->
+  <div class="copyright">جميع الحقوق محفوظة لمصمم SFW للتسويق الإلكتروني &copy; 2025</div>
+  
   <div class="marquee" id="marqueeText">🔥 إعلان مهم: خصومات على اشتراكات EMS هذا الشهر! 🔥</div>
   
   <!-- Admin Icon and Top Icons -->
@@ -457,8 +473,6 @@
       </div>
     </div>
   </div>
-
-  <footer>جميع الحقوق محفوظة لمصمم SFW للتسويق الإلكتروني &copy; 2025</footer>
 
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
