@@ -2,281 +2,839 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>دكتور فيتنس EMS السويس</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DR FITNESS EMS CENTER</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600;800&display=swap');
+
     body {
-      margin: 0;
       font-family: 'Cairo', sans-serif;
-      background: linear-gradient(to bottom right, #f0f8ff, #e0ffe0);
-      color: #333;
-      text-align: center;
-      animation: fadeIn 1s ease-in-out;
+      background-color: #1a1a1a;
+      color: #f5deb3;
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+      overflow-x: hidden;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    header {
-      background: linear-gradient(to right, #03a9f4, #00c853);
-      padding: 15px;
+    .marquee {
+      width: 100%;
+      background: #8b4513;
       color: white;
-      position: relative;
+      padding: 10px;
       font-weight: bold;
-      font-size: 1.2em;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    }
-
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 10px;
-    }
-
-    nav button {
-      background: white;
-      color: #03a9f4;
-      border: 2px solid #03a9f4;
-      padding: 8px 16px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    nav button:hover {
-      background: #03a9f4;
-      color: white;
-    }
-
-    #adminIcon {
-      position: absolute;
-      left: 20px;
-      top: 15px;
-      cursor: pointer;
       font-size: 20px;
-      background: white;
-      color: #03a9f4;
-      border-radius: 50%;
-      padding: 8px;
-      transition: 0.3s;
+      position: fixed;
+      top: 0;
+      z-index: 1000;
+      animation: slide-left 20s linear infinite;
     }
 
-    .section {
+    @keyframes slide-left {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .header {
+      margin-top: 100px;
       padding: 30px;
+      background: #000;
+      color: #cd7f32;
+      text-align: center;
     }
 
-    .hidden { display: none; }
+    .header h1 {
+      font-size: 45px;
+      margin: 0;
+      animation: fadein 2s ease-in-out;
+    }
 
-    .slide img {
-      width: 60%;
-      max-width: 500px;
+    .welcome-text {
+      font-size: 26px;
+      color: #daa520;
+      margin: 20px;
+      animation: fadein 3s ease-in-out;
+    }
+
+    @keyframes fadein {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .content {
+      text-align: center;
+      margin: 30px auto;
+      padding: 20px;
+      max-width: 800px;
+    }
+
+    .dynamic-entry {
+      margin: 20px 0;
+      animation: fadein 1s ease-in-out;
+      position: relative;
+      border: 1px solid #cd7f32;
+      padding: 15px;
       border-radius: 10px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-      transition: transform 0.3s;
     }
 
-    .slide img:hover {
+    .dynamic-entry img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin: 10px 0;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .dynamic-entry img:hover {
       transform: scale(1.05);
     }
 
-    .slide h3 {
-      font-size: 24px;
-      margin-bottom: 10px;
-      color: #2e7d32;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-    }
-
-    input, textarea {
-      padding: 8px;
-      width: 90%;
-      max-width: 400px;
-      margin: 5px auto;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-family: inherit;
-    }
-
     button {
-      margin-top: 10px;
-      padding: 10px 20px;
-      background: #00c853;
-      border: none;
+      background-color: #cd7f32;
       color: white;
-      font-size: 16px;
-      border-radius: 5px;
+      border: none;
+      border-radius: 25px;
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 20px;
       cursor: pointer;
+      transition: transform 0.3s ease-in-out, background-color 0.3s ease;
     }
 
     button:hover {
-      background: #039b3b;
+      transform: scale(1.1);
+      background-color: #a0522d;
+    }
+
+    .admin-icon {
+      position: fixed;
+      left: 10px;
+      top: 10px;
+      cursor: pointer;
+      font-size: 24px;
+      z-index: 1001;
+      background: #cd7f32;
+      color: white;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Top icons container */
+    .top-icons {
+      position: fixed;
+      left: 10px;
+      top: 60px; /* أسفل أيقونة الأدمن مباشرة */
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 1000;
+    }
+
+    .side-icon {
+      background-color: #cd7f32;
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+
+    .side-icon:hover {
+      transform: scale(1.1);
+      background-color: #a0522d;
+    }
+
+    .admin-panel, .login-form {
+      display: none;
+      background: #2f2f2f;
+      color: #f5deb3;
+      padding: 20px;
+      margin: 10px auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+      max-width: 800px;
+      border-radius: 10px;
+      position: relative;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+
+    /* Admin panel header */
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #cd7f32;
+      padding-bottom: 10px;
+    }
+
+    .admin-header h3 {
+      margin: 0;
+    }
+
+    .logout-btn {
+      background-color: #ff4d4d;
+      padding: 8px 15px;
+      font-size: 16px;
+    }
+
+    .logout-btn:hover {
+      background-color: #cc0000;
+    }
+
+    input, textarea {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background-color: #f5f5f5;
+      color: #333;
+      font-family: 'Cairo', sans-serif;
+      font-size: 18px;
     }
 
     footer {
+      text-align: center;
       padding: 20px;
+      background: #000000;
+      color: #cd7f32;
+      margin-top: 40px;
+      font-size: 18px;
+    }
+
+    /* Admin panel styles */
+    .admin-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .admin-section {
+      background: #3a3a3a;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .admin-section h4 {
+      margin-top: 0;
+      color: #daa520;
+      border-bottom: 1px solid #cd7f32;
+      padding-bottom: 5px;
+    }
+
+    .entry-controls {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      display: flex;
+      gap: 5px;
+    }
+
+    .entry-controls button {
+      padding: 5px 10px;
       font-size: 14px;
-      color: #777;
+      margin: 0;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .edit-form {
+      background: #3a3a3a;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    /* Side panels styles */
+    .side-panel {
+      position: fixed;
+      left: 60px;
+      top: 110px;
+      width: 300px;
+      background: #2f2f2f;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      display: none;
+      z-index: 999;
+    }
+
+    .side-panel h3 {
+      margin-top: 0;
+      color: #daa520;
+      border-bottom: 1px solid #cd7f32;
+      padding-bottom: 5px;
+    }
+
+    .message-form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .admin-messages {
+      max-height: 300px;
+      overflow-y: auto;
+      margin-top: 10px;
+    }
+
+    .message-item {
+      background: #3a3a3a;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    .message-time {
+      font-size: 12px;
+      color: #aaa;
+    }
+
+    .delete-message {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      background: #ff4d4d;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .clear-all-btn {
+      background-color: #ff4d4d;
+      margin-top: 10px;
+    }
+
+    .clear-all-btn:hover {
+      background-color: #cc0000;
+    }
+
+    /* Text truncation styles */
+    .entry-text {
+      text-align: right;
+      line-height: 1.6;
+      margin: 10px 0;
+    }
+
+    .truncated {
+      display: -webkit-box;
+      -webkit-line-clamp: 5;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .show-more-btn {
+      background: none;
+      border: none;
+      color: #cd7f32;
+      text-decoration: underline;
+      cursor: pointer;
+      padding: 5px;
+      font-size: 16px;
+      margin: 5px 0;
+    }
+
+    .show-more-btn:hover {
+      color: #daa520;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
-
-  <header>
-    دكتور فيتنس EMS السويس
-    <div id="adminIcon" onclick="showLogin()">👤</div>
-    <nav>
-      <button onclick="showSection('home')">الرئيسية</button>
-      <button onclick="showSection('about')">من نحن</button>
-      <button onclick="showSection('contact')">اتصل بنا</button>
-    </nav>
-  </header>
-
-  <div id="home" class="section">
-    <h2 id="homeText">مرحباً بكم في دكتور فيتنس EMS السويس</h2>
-    <div id="slideContainer"></div>
+  <div class="marquee" id="marqueeText">🔥 إعلان مهم: خصومات على اشتراكات EMS هذا الشهر! 🔥</div>
+  
+  <!-- Admin Icon and Top Icons -->
+  <div class="admin-icon" onclick="toggleLogin()">⚙️</div>
+  <div class="top-icons">
+    <div class="side-icon" onclick="togglePanel('aboutPanel')">ℹ️</div>
+    <div class="side-icon" onclick="togglePanel('contactPanel')">📞</div>
+    <div class="side-icon" onclick="togglePanel('messagePanel')">✉️</div>
   </div>
 
-  <div id="about" class="section hidden">
-    <h2>من نحن</h2>
-    <p id="aboutText">نحن مركز متخصّص في تقنية EMS الحديثة للتمارين.</p>
+  <!-- About Us Panel -->
+  <div class="side-panel" id="aboutPanel">
+    <h3>من نحن</h3>
+    <div id="aboutContent"></div>
   </div>
 
-  <div id="contact" class="section hidden">
-    <h2>اتصل بنا</h2>
-    <p id="contactText">📞 0100000000 - 📍 السويس، شارع السلام</p>
-    <textarea id="msgText" placeholder="اكتب رسالتك هنا"></textarea><br>
-    <button onclick="sendMessage()">إرسال رسالة</button>
+  <!-- Contact Us Panel -->
+  <div class="side-panel" id="contactPanel">
+    <h3>اتصل بنا</h3>
+    <div id="contactContent"></div>
   </div>
 
-  <!-- واجهة تسجيل دخول الأدمن -->
-  <div id="adminLogin" class="section hidden">
+  <!-- Message Panel -->
+  <div class="side-panel" id="messagePanel">
+    <h3>إرسال رسالة</h3>
+    <div class="message-form">
+      <textarea id="userMessage" placeholder="اكتب رسالتك هنا..."></textarea>
+      <button onclick="sendMessage()">إرسال</button>
+    </div>
+  </div>
+
+  <div class="login-form" id="loginForm">
     <h3>تسجيل دخول الأدمن</h3>
-    <input id="username" placeholder="اسم المستخدم"><br>
-    <input id="password" placeholder="كلمة المرور" type="password"><br>
-    <button onclick="login()">دخول</button>
+    <input type="text" id="username" placeholder="اسم المستخدم">
+    <input type="password" id="password" placeholder="كلمة المرور">
+    <button onclick="adminLogin()">دخول</button>
+    <button onclick="hideLoginForm()">إلغاء</button>
   </div>
 
-  <!-- لوحة تحكم الأدمن -->
-  <div id="adminPanel" class="section hidden">
-    <h3>لوحة تحكم الأدمن</h3>
-    <textarea id="homeInput" placeholder="نص الرئيسية"></textarea><br>
-    <textarea id="aboutInput" placeholder="نص من نحن"></textarea><br>
-    <textarea id="contactInput" placeholder="نص اتصل بنا"></textarea><br>
-    <button onclick="updateTexts()">حفظ النصوص</button><br><br>
-
-    <input type="file" id="imageUpload"><br>
-    <input type="text" id="imageText" placeholder="نص فوق الصورة"><br>
-    <button onclick="uploadImage()">رفع صورة</button><br><br>
-
-    <button onclick="logout()">🚪 تسجيل الخروج</button>
+  <div class="header">
+    <h1>DR FITNESS EMS CENTER</h1>
+    <p class="welcome-text" id="welcomeText">مرحباً بكم في مركز دكتور فتنس EMS</p>
   </div>
 
-  <footer>© جميع الحقوق محفوظة لـ دكتور فيتنس EMS السويس</footer>
+  <div class="content">
+    <div id="entriesContainer"></div>
+  </div>
 
-  <!-- Firebase Scripts -->
+  <div class="admin-panel" id="adminPanel">
+    <div class="admin-header">
+      <h3>لوحة تحكم الأدمن</h3>
+      <button class="logout-btn" onclick="logoutAdmin()">خروج</button>
+    </div>
+    
+    <div class="admin-controls">
+      <div class="admin-section">
+        <h4>إعدادات الموقع العامة</h4>
+        <label>نص الإعلان المتحرك:</label>
+        <textarea id="marqueeInput" placeholder="نص الإعلان المتحرك"></textarea>
+        
+        <label>نص الترحيب:</label>
+        <textarea id="welcomeInput" placeholder="نص الترحيب"></textarea>
+        
+        <label>محتوى "من نحن":</label>
+        <textarea id="aboutInput" placeholder="محتوى قسم من نحن"></textarea>
+        
+        <label>محتوى "اتصل بنا":</label>
+        <textarea id="contactInput" placeholder="محتوى قسم اتصل بنا"></textarea>
+        
+        <button onclick="saveGeneralSettings()">حفظ الإعدادات العامة</button>
+      </div>
+
+      <div class="admin-section">
+        <h4>إضافة مدخل جديد</h4>
+        <label>نص المدخل:</label>
+        <textarea id="entryText" placeholder="نص المدخل"></textarea>
+        
+        <label>صورة المدخل:</label>
+        <input type="file" id="imageUpload" accept="image/*">
+        
+        <button onclick="addNewEntry()">إضافة مدخل جديد</button>
+      </div>
+
+      <div class="admin-section">
+        <h4>المدخلات الحالية</h4>
+        <div id="currentEntriesList"></div>
+      </div>
+
+      <div class="admin-section">
+        <h4>الرسائل الواردة</h4>
+        <div class="admin-messages" id="adminMessages"></div>
+        <button class="clear-all-btn" onclick="clearAllMessages()">مسح جميع الرسائل</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>جميع الحقوق محفوظة لمصمم SFW للتسويق الإلكتروني &copy; 2025</footer>
+
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-storage-compat.js"></script>
-
   <script>
     const firebaseConfig = {
-      apiKey: "AIzaSyACflgbzGWvr6EuHKwaPIWzzSJKfbw3Hd0",
-      authDomain: "drfitness-page.firebaseapp.com",
-      projectId: "drfitness-page",
-      storageBucket: "drfitness-page.appspot.com",
-      messagingSenderId: "821864673106",
-      appId: "1:821864673106:web:70ce035e57517faaad548b",
-      measurementId: "G-LQ6R9F7S2Z"
+      apiKey: "AIzaSyAZd98zrljKyvKYvoQoflINtWExg5AL558",
+      authDomain: "page-ce641.firebaseapp.com",
+      projectId: "page-ce641",
+      storageBucket: "page-ce641.appspot.com",
+      messagingSenderId: "1007850048783",
+      appId: "1:1007850048783:web:073bd5bd5b854a9d7d427a",
+      measurementId: "G-L71DZKS3ST"
     };
-
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
-    const storage = firebase.storage();
 
-    function showSection(id) {
-      document.querySelectorAll(".section").forEach(s => s.classList.add("hidden"));
-      document.getElementById(id).classList.remove("hidden");
+    // Global variable to track currently open panel
+    let currentOpenPanel = null;
+
+    function toggleLogin() {
+      document.getElementById('loginForm').style.display = 
+        document.getElementById('loginForm').style.display === 'block' ? 'none' : 'block';
+      document.getElementById('adminPanel').style.display = 'none';
+      closeCurrentPanel();
     }
 
-    function showLogin() {
-      showSection("adminLogin");
+    function hideLoginForm() {
+      document.getElementById('loginForm').style.display = 'none';
     }
 
-    function login() {
-      const u = document.getElementById("username").value;
-      const p = document.getElementById("password").value;
-      if (u === "admin" && p === "1234") {
-        showSection("adminPanel");
+    function adminLogin() {
+      const user = document.getElementById('username').value;
+      const pass = document.getElementById('password').value;
+      if (user === 'admin' && pass === '1234') {
+        document.getElementById('adminPanel').style.display = 'block';
+        document.getElementById('loginForm').style.display = 'none';
+        loadAdminContent();
       } else {
-        alert("بيانات خاطئة");
+        alert("بيانات الدخول غير صحيحة");
       }
     }
 
-    function logout() {
-      showSection("home");
+    function logoutAdmin() {
+      document.getElementById('adminPanel').style.display = 'none';
+      document.getElementById('loginForm').style.display = 'none';
+      closeCurrentPanel();
     }
 
-    async function updateTexts() {
-      await db.ref("content/main").set({
-        home: homeInput.value,
-        about: aboutInput.value,
-        contact: contactInput.value
+    function togglePanel(panelId) {
+      const panel = document.getElementById(panelId);
+      
+      // Close currently open panel if clicking the same icon
+      if (currentOpenPanel === panelId) {
+        panel.style.display = 'none';
+        currentOpenPanel = null;
+        return;
+      }
+      
+      // Close any open panel
+      closeCurrentPanel();
+      
+      // Open the selected panel
+      panel.style.display = 'block';
+      currentOpenPanel = panelId;
+    }
+
+    function closeCurrentPanel() {
+      if (currentOpenPanel) {
+        document.getElementById(currentOpenPanel).style.display = 'none';
+        currentOpenPanel = null;
+      }
+    }
+
+    function loadAdminContent() {
+      // Load general settings
+      db.ref("pageContent").once("value", snapshot => {
+        const data = snapshot.val();
+        if (data) {
+          document.getElementById("marqueeInput").value = data.marquee || '';
+          document.getElementById("welcomeInput").value = data.welcome || '';
+          document.getElementById("aboutInput").value = data.about || '';
+          document.getElementById("contactInput").value = data.contact || '';
+          
+          // Update frontend panels
+          document.getElementById("aboutContent").innerHTML = data.about || 'لم يتم إضافة محتوى بعد';
+          document.getElementById("contactContent").innerHTML = data.contact || 'لم يتم إضافة محتوى بعد';
+        }
       });
-      alert("تم الحفظ");
-      loadContent();
+
+      // Load current entries
+      loadCurrentEntries();
+      
+      // Load messages
+      loadMessages();
     }
 
-    async function uploadImage() {
-      const file = document.getElementById("imageUpload").files[0];
-      const text = document.getElementById("imageText").value;
-      if (!file || !text) return alert("اختر صورة وأدخل نص");
-
-      const ref = storage.ref("slides/" + file.name);
-      await ref.put(file);
-      const url = await ref.getDownloadURL();
-      const newRef = db.ref("slides").push();
-      await newRef.set({ url, text });
-      alert("تم الرفع");
-      loadSlides();
+    function loadMessages() {
+      db.ref("messages").on("value", snapshot => {
+        const messages = snapshot.val();
+        const container = document.getElementById("adminMessages");
+        container.innerHTML = '';
+        
+        if (messages) {
+          Object.entries(messages).forEach(([key, message]) => {
+            const messageDiv = document.createElement("div");
+            messageDiv.className = "message-item";
+            messageDiv.innerHTML = `
+              <button class="delete-message" onclick="deleteMessage('${key}')">×</button>
+              <p>${message.text}</p>
+              <div class="message-time">${message.time || ''}</div>
+            `;
+            container.appendChild(messageDiv);
+          });
+        } else {
+          container.innerHTML = '<p>لا توجد رسائل واردة</p>';
+        }
+      });
     }
 
-    async function sendMessage() {
-      const msg = document.getElementById("msgText").value.trim();
-      if (!msg) return alert("اكتب الرسالة أولاً");
-      await db.ref("messages").push({ text: msg, time: Date.now() });
-      alert("تم الإرسال");
-      msgText.value = "";
-    }
-
-    async function loadContent() {
-      const snap = await db.ref("content/main").get();
-      if (snap.exists()) {
-        const data = snap.val();
-        homeText.innerText = data.home || homeText.innerText;
-        aboutText.innerText = data.about || aboutText.innerText;
-        contactText.innerText = data.contact || contactText.innerText;
+    function deleteMessage(messageId) {
+      if (confirm("هل أنت متأكد من حذف هذه الرسالة؟")) {
+        db.ref(`messages/${messageId}`).remove()
+          .then(() => {
+            alert("تم حذف الرسالة بنجاح");
+          })
+          .catch(error => {
+            console.error("Error deleting message:", error);
+            alert("حدث خطأ أثناء حذف الرسالة");
+          });
       }
     }
 
-    async function loadSlides() {
-      slideContainer.innerHTML = "";
-      const snap = await db.ref("slides").get();
-      if (snap.exists()) {
-        const data = snap.val();
-        Object.values(data).forEach(d => {
-          const slide = document.createElement("div");
-          slide.className = "slide";
-          slide.innerHTML = `<h3>${d.text}</h3><img src="${d.url}" alt="صورة">`;
-          slideContainer.appendChild(slide);
+    function clearAllMessages() {
+      if (confirm("هل أنت متأكد من حذف جميع الرسائل؟ لا يمكن التراجع عن هذا الإجراء.")) {
+        db.ref("messages").remove()
+          .then(() => {
+            alert("تم حذف جميع الرسائل بنجاح");
+          })
+          .catch(error => {
+            console.error("Error clearing messages:", error);
+            alert("حدث خطأ أثناء حذف الرسائل");
+          });
+      }
+    }
+
+    function loadCurrentEntries() {
+      db.ref("pageEntries").once("value", snapshot => {
+        const entries = snapshot.val();
+        const container = document.getElementById("currentEntriesList");
+        container.innerHTML = '';
+        
+        if (entries) {
+          Object.entries(entries).forEach(([key, entry]) => {
+            const entryDiv = document.createElement("div");
+            entryDiv.className = "dynamic-entry";
+            entryDiv.dataset.id = key;
+            
+            entryDiv.innerHTML = `
+              <div class="entry-controls">
+                <button onclick="editEntry('${key}')">تعديل</button>
+                <button onclick="deleteEntry('${key}')">حذف</button>
+              </div>
+              <p>${entry.text}</p>
+              <img src="${entry.image}" alt="صورة المدخل" style="max-width: 200px;">
+              <div id="editForm-${key}" class="edit-form hidden">
+                <textarea id="editText-${key}" placeholder="نص المدخل">${entry.text}</textarea>
+                <input type="file" id="editImage-${key}" accept="image/*">
+                <button onclick="saveEntryChanges('${key}')">حفظ التعديلات</button>
+                <button onclick="cancelEdit('${key}')">إلغاء</button>
+              </div>
+            `;
+            
+            container.appendChild(entryDiv);
+          });
+        } else {
+          container.innerHTML = '<p>لا توجد مدخلات حالية</p>';
+        }
+      });
+    }
+
+    function saveGeneralSettings() {
+      const marqueeText = document.getElementById("marqueeInput").value;
+      const welcomeText = document.getElementById("welcomeInput").value;
+      const aboutText = document.getElementById("aboutInput").value;
+      const contactText = document.getElementById("contactInput").value;
+
+      db.ref("pageContent").set({
+        marquee: marqueeText,
+        welcome: welcomeText,
+        about: aboutText,
+        contact: contactText
+      })
+      .then(() => {
+        alert("تم حفظ الإعدادات العامة بنجاح!");
+        // Update frontend panels immediately
+        document.getElementById("aboutContent").innerHTML = aboutText || 'لم يتم إضافة محتوى بعد';
+        document.getElementById("contactContent").innerHTML = contactText || 'لم يتم إضافة محتوى بعد';
+      })
+      .catch(error => {
+        console.error("Error saving general settings:", error);
+        alert("حدث خطأ أثناء حفظ الإعدادات العامة");
+      });
+    }
+
+    function addNewEntry() {
+      const entryText = document.getElementById("entryText").value;
+      const imageFile = document.getElementById("imageUpload").files[0];
+
+      if (!entryText || !imageFile) {
+        alert("الرجاء إدخال نص المدخل وتحديد صورة");
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const newEntry = {
+          text: entryText,
+          image: e.target.result
+        };
+
+        db.ref("pageEntries").push(newEntry)
+          .then(() => {
+            alert("تم إضافة المدخل الجديد بنجاح!");
+            document.getElementById("entryText").value = '';
+            document.getElementById("imageUpload").value = '';
+            loadCurrentEntries();
+          })
+          .catch(error => {
+            console.error("Error adding new entry:", error);
+            alert("حدث خطأ أثناء إضافة المدخل الجديد");
+          });
+      };
+      reader.readAsDataURL(imageFile);
+    }
+
+    function editEntry(entryId) {
+      document.getElementById(`editForm-${entryId}`).classList.remove('hidden');
+    }
+
+    function cancelEdit(entryId) {
+      document.getElementById(`editForm-${entryId}`).classList.add('hidden');
+    }
+
+    function saveEntryChanges(entryId) {
+      const newText = document.getElementById(`editText-${entryId}`).value;
+      const imageFile = document.getElementById(`editImage-${entryId}`).files[0];
+
+      if (!newText) {
+        alert("الرجاء إدخال نص المدخل");
+        return;
+      }
+
+      if (imageFile) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          updateEntry(entryId, newText, e.target.result);
+        };
+        reader.readAsDataURL(imageFile);
+      } else {
+        // Keep the same image if no new image is selected
+        db.ref(`pageEntries/${entryId}`).once("value", snapshot => {
+          const currentEntry = snapshot.val();
+          updateEntry(entryId, newText, currentEntry.image);
         });
       }
     }
 
-    window.onload = () => {
-      loadContent();
-      loadSlides();
+    function updateEntry(entryId, newText, newImage) {
+      db.ref(`pageEntries/${entryId}`).update({
+        text: newText,
+        image: newImage
+      })
+      .then(() => {
+        alert("تم تحديث المدخل بنجاح!");
+        loadCurrentEntries();
+      })
+      .catch(error => {
+        console.error("Error updating entry:", error);
+        alert("حدث خطأ أثناء تحديث المدخل");
+      });
+    }
+
+    function deleteEntry(entryId) {
+      if (confirm("هل أنت متأكد من حذف هذا المدخل؟")) {
+        db.ref(`pageEntries/${entryId}`).remove()
+          .then(() => {
+            alert("تم حذف المدخل بنجاح!");
+            loadCurrentEntries();
+          })
+          .catch(error => {
+            console.error("Error deleting entry:", error);
+            alert("حدث خطأ أثناء حذف المدخل");
+          });
+      }
+    }
+
+    function sendMessage() {
+      const messageText = document.getElementById("userMessage").value;
+      
+      if (!messageText) {
+        alert("الرجاء إدخال نص الرسالة");
+        return;
+      }
+      
+      const newMessage = {
+        text: messageText,
+        time: new Date().toLocaleString()
+      };
+      
+      db.ref("messages").push(newMessage)
+        .then(() => {
+          alert("تم إرسال رسالتك بنجاح!");
+          document.getElementById("userMessage").value = '';
+          document.getElementById("messagePanel").style.display = 'none';
+          currentOpenPanel = null;
+        })
+        .catch(error => {
+          console.error("Error sending message:", error);
+          alert("حدث خطأ أثناء إرسال الرسالة");
+        });
+    }
+
+    function toggleText(button, entryId) {
+      const textElement = document.getElementById(`entry-text-${entryId}`);
+      if (textElement.classList.contains('truncated')) {
+        textElement.classList.remove('truncated');
+        button.textContent = 'عرض أقل';
+      } else {
+        textElement.classList.add('truncated');
+        button.textContent = 'المزيد...';
+      }
+    }
+
+    window.onload = function() {
+      db.ref("pageContent").on("value", snapshot => {
+        const data = snapshot.val();
+        if (data) {
+          document.getElementById("marqueeText").textContent = data.marquee || '';
+          document.getElementById("welcomeText").textContent = data.welcome || '';
+          document.getElementById("aboutContent").innerHTML = data.about || 'لم يتم إضافة محتوى بعد';
+          document.getElementById("contactContent").innerHTML = data.contact || 'لم يتم إضافة محتوى بعد';
+        }
+      });
+
+      db.ref("pageEntries").on("value", snapshot => {
+        const entries = snapshot.val();
+        const container = document.getElementById("entriesContainer");
+        container.innerHTML = '';
+        
+        if (entries) {
+          Object.entries(entries).forEach(([key, entry]) => {
+            const div = document.createElement("div");
+            div.className = "dynamic-entry";
+            
+            // Create text element with truncation
+            const textDiv = document.createElement("div");
+            textDiv.className = "entry-text truncated";
+            textDiv.id = `entry-text-${key}`;
+            textDiv.textContent = entry.text;
+            
+            // Create show more/less button
+            const toggleBtn = document.createElement("button");
+            toggleBtn.className = "show-more-btn";
+            toggleBtn.textContent = "المزيد...";
+            toggleBtn.onclick = function() { toggleText(this, key); };
+            
+            div.innerHTML = `
+              <img src="${entry.image}" alt="صورة">
+            `;
+            div.appendChild(textDiv);
+            div.appendChild(toggleBtn);
+            
+            container.appendChild(div);
+          });
+        }
+      });
     };
   </script>
 </body>
